@@ -3,20 +3,20 @@ import MagicString, { SourceMap } from 'magic-string';
 export { findMockRedirect } from './redirect.js';
 
 interface AutomockPluginOptions {
-    /**
-     * @default "__vitest_mocker__"
-     */
-    globalThisAccessor?: string;
+	/**
+	* @default "__vitest_mocker__"
+	*/
+	globalThisAccessor?: string;
 }
 declare function automockPlugin(options?: AutomockPluginOptions): Plugin;
-declare function automockModule(code: string, mockType: 'automock' | 'autospy', parse: (code: string) => any, options?: AutomockPluginOptions): MagicString;
+declare function automockModule(code: string, mockType: "automock" | "autospy", parse: (code: string) => any, options?: AutomockPluginOptions): MagicString;
 
 interface DynamicImportPluginOptions {
-    /**
-     * @default `"__vitest_mocker__"`
-     */
-    globalThisAccessor?: string;
-    filter?: (id: string) => boolean;
+	/**
+	* @default `"__vitest_mocker__"`
+	*/
+	globalThisAccessor?: string;
+	filter?: (id: string) => boolean;
 }
 declare function dynamicImportPlugin(options?: DynamicImportPluginOptions): Plugin;
 
@@ -706,98 +706,98 @@ interface AwaitExpression extends BaseExpression {
 }
 
 type Positioned<T> = T & {
-    start: number;
-    end: number;
+	start: number
+	end: number
 };
 type Node = Positioned<Node$1>;
 
 interface HoistMocksOptions {
-    /**
-     * List of modules that should always be imported before compiler hints.
-     * @default 'vitest'
-     */
-    hoistedModule?: string;
-    /**
-     * @default ["vi", "vitest"]
-     */
-    utilsObjectNames?: string[];
-    /**
-     * @default ["mock", "unmock"]
-     */
-    hoistableMockMethodNames?: string[];
-    /**
-     * @default ["mock", "unmock", "doMock", "doUnmock"]
-     */
-    dynamicImportMockMethodNames?: string[];
-    /**
-     * @default ["hoisted"]
-     */
-    hoistedMethodNames?: string[];
-    regexpHoistable?: RegExp;
-    codeFrameGenerator?: CodeFrameGenerator;
+	/**
+	* List of modules that should always be imported before compiler hints.
+	* @default 'vitest'
+	*/
+	hoistedModule?: string;
+	/**
+	* @default ["vi", "vitest"]
+	*/
+	utilsObjectNames?: string[];
+	/**
+	* @default ["mock", "unmock"]
+	*/
+	hoistableMockMethodNames?: string[];
+	/**
+	* @default ["mock", "unmock", "doMock", "doUnmock"]
+	*/
+	dynamicImportMockMethodNames?: string[];
+	/**
+	* @default ["hoisted"]
+	*/
+	hoistedMethodNames?: string[];
+	regexpHoistable?: RegExp;
+	codeFrameGenerator?: CodeFrameGenerator;
 }
-interface HoistMocksPluginOptions extends Omit<HoistMocksOptions, 'regexpHoistable'> {
-    include?: string | RegExp | (string | RegExp)[];
-    exclude?: string | RegExp | (string | RegExp)[];
-    /**
-     * overrides include/exclude options
-     */
-    filter?: (id: string) => boolean;
+interface HoistMocksPluginOptions extends Omit<HoistMocksOptions, "regexpHoistable"> {
+	include?: string | RegExp | (string | RegExp)[];
+	exclude?: string | RegExp | (string | RegExp)[];
+	/**
+	* overrides include/exclude options
+	*/
+	filter?: (id: string) => boolean;
 }
 declare function hoistMocksPlugin(options?: HoistMocksPluginOptions): Plugin;
 interface HoistMocksResult {
-    ast: Rollup.ProgramNode;
-    code: string;
-    map: SourceMap;
+	ast: Rollup.ProgramNode;
+	code: string;
+	map: SourceMap;
 }
 interface CodeFrameGenerator {
-    (node: Positioned<Node>, id: string, code: string): string;
+	(node: Positioned<Node>, id: string, code: string): string;
 }
-declare function hoistMocks(code: string, id: string, parse: Rollup.PluginContext['parse'], options?: HoistMocksOptions): HoistMocksResult | undefined;
+declare function hoistMocks(code: string, id: string, parse: Rollup.PluginContext["parse"], options?: HoistMocksOptions): HoistMocksResult | undefined;
 
 interface InterceptorPluginOptions {
-    /**
-     * @default "__vitest_mocker__"
-     */
-    globalThisAccessor?: string;
+	/**
+	* @default "__vitest_mocker__"
+	*/
+	globalThisAccessor?: string;
 }
 declare function interceptorPlugin(options: InterceptorPluginOptions): Plugin;
 
 interface MockerPluginOptions extends AutomockPluginOptions {
-    hoistMocks?: HoistMocksPluginOptions;
+	hoistMocks?: HoistMocksPluginOptions;
 }
 declare function mockerPlugin(options?: MockerPluginOptions): Plugin[];
 
 interface ServerResolverOptions {
-    /**
-     * @default ['/node_modules/']
-     */
-    moduleDirectories?: string[];
+	/**
+	* @default ['/node_modules/']
+	*/
+	moduleDirectories?: string[];
 }
 declare class ServerMockResolver {
-    private server;
-    private options;
-    constructor(server: ViteDevServer, options?: ServerResolverOptions);
-    resolveMock(rawId: string, importer: string, options: {
-        mock: 'spy' | 'factory' | 'auto';
-    }): Promise<ServerMockResolution>;
-    invalidate(ids: string[]): void;
-    resolveId(id: string, importer?: string): Promise<ServerIdResolution | null>;
-    private normalizeResolveIdToUrl;
-    private resolveMockId;
-    private resolveModule;
+	private server;
+	private options;
+	constructor(server: ViteDevServer, options?: ServerResolverOptions);
+	resolveMock(rawId: string, importer: string, options: {
+		mock: "spy" | "factory" | "auto"
+	}): Promise<ServerMockResolution>;
+	invalidate(ids: string[]): void;
+	resolveId(id: string, importer?: string): Promise<ServerIdResolution | null>;
+	private normalizeResolveIdToUrl;
+	private resolveMockId;
+	private resolveModule;
 }
 interface ServerMockResolution {
-    mockType: 'manual' | 'redirect' | 'automock' | 'autospy';
-    resolvedId: string;
-    resolvedUrl: string;
-    needsInterop?: boolean;
-    redirectUrl?: string | null;
+	mockType: "manual" | "redirect" | "automock" | "autospy";
+	resolvedId: string;
+	resolvedUrl: string;
+	needsInterop?: boolean;
+	redirectUrl?: string | null;
 }
 interface ServerIdResolution {
-    id: string;
-    url: string;
-    optimized: boolean;
+	id: string;
+	url: string;
+	optimized: boolean;
 }
 
 export { type AutomockPluginOptions, type HoistMocksPluginOptions, type HoistMocksResult, type InterceptorPluginOptions, type ServerIdResolution, type ServerMockResolution, ServerMockResolver, type ServerResolverOptions, automockModule, automockPlugin, dynamicImportPlugin, hoistMocks, hoistMocksPlugin, interceptorPlugin, mockerPlugin };

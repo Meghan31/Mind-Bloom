@@ -1,0 +1,20 @@
+/* src/pages/authentication/auth.css */
+
+.form-input {
+	padding: 0.5rem;
+	border: 1px solid #cbd5e0;
+	border-radius: 0.25rem;
+	outline: none;
+	transition: border-color 0.2s ease-in-out;
+	width: 250px;
+}
+
+.form-input:focus {
+	border-color: #4f46e5;
+	box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.form-input:disabled {
+	background-color: #f3f4f6;
+	cursor: not-allowed;
+}

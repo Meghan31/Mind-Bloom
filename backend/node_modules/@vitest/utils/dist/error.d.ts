@@ -1,4 +1,4 @@
-import { D as DiffOptions } from './types-6R1G1gkS.js';
+import { D as DiffOptions } from './types.d-Cr0z4Cnu.js';
 import '@vitest/pretty-format';
 
 declare function serializeValue(val: any, seen?: WeakMap<WeakKey, any>): any;
