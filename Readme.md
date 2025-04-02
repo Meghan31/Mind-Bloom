@@ -32,10 +32,7 @@ The **Mental Health Affirmation Journal** is a web-based platform aimed at promo
 
 ### **Home Page**
 
-- Users are prompted to **rate their mood** on a 5-star scale (1 = very sad, 5 = very happy).
-- Based on the mood rating:
-  - **Low mood (1-2)** → A **cheerful affirmation** is provided to help uplift the user.
-  - **High mood (4-5)** → A **happy affirmation** reinforces their positivity and well-being.
+- Users are prompted to **rate their mood** on the given moods
 - The home page also features the **Journal Section**, where users can record their thoughts.
 
 ### **Navigation**
