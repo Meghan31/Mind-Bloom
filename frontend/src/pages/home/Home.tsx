@@ -2,6 +2,9 @@
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 
+import { MoodProvider } from '@/context/MoodContext';
+import JournalEntry from '@/sections/JournalEntry';
+import Moods from '@/sections/Moods';
 import { motion } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -130,12 +133,26 @@ const Home = () => {
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5 }}
 				>
-					<h2>Today’s Affirmation 🌿</h2>
-					<p className="affirmation">"Quotes to be send here!!"</p>
+					<div className="affirmations">
+						<h2>Today’s Affirmation 🌿</h2>
+						<p className="affirmation">"Quotes to be send here!!"</p>
+					</div>{' '}
+					<MoodProvider>
+						<div className="mood">
+							<h2>How are you feeling today?</h2>
+
+							{/* <MoodRating /> */}
+							<Moods />
+						</div>
+						<div className="journals">
+							<JournalEntry />
+						</div>
+					</MoodProvider>
 				</motion.div>
 				{/* 
 				
 				We have to add a section for the journal entries here.
+				
 				We can use a card component to display the journal entries.
 				
 				*/}
