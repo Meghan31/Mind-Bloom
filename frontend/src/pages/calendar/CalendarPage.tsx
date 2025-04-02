@@ -1,15 +1,12 @@
-// home.tsx
+// src/pages/calendar/CalendarPage.tsx
 import { Button } from '@/components/ui/button';
-import { MoodProvider } from '@/context/MoodContext';
 import JournalCalendar from '@/sections/JournalCalendar';
-import JournalEntry from '@/sections/JournalEntry';
-import Moods from '@/sections/Moods';
 import { motion } from 'framer-motion';
-import { Calendar, Moon, Sun } from 'lucide-react';
+import { Home, Moon, Sun } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { authAPI } from '../../api';
-import './home.css';
+import './calendar.css';
 
 // Define a simple User type
 type User = {
@@ -18,7 +15,7 @@ type User = {
 	email: string;
 };
 
-const Home = () => {
+const CalendarPage = () => {
 	const [user, setUser] = useState<User | null>(null);
 	const [darkMode, setDarkMode] = useState(false);
 
@@ -75,65 +72,39 @@ const Home = () => {
 						textShadow: '0px 4px 6px rgba(0, 0, 0, 0.3)',
 					}}
 				>
-					Welcome to Mind-Bloom
+					Mind-Bloom Journal Calendar
 				</motion.h1>
 				<div className="flex items-center gap-4">
-					<Link to="/calendar">
+					<Link to="/home">
 						<Button variant="outline" className="flex items-center gap-2">
-							<Calendar size={18} color="black" />
-							<span style={{ color: 'black' }}>Calendar View</span>
+							<Home size={18} color="black" />
+							<span style={{ color: 'black' }}>Return Home</span>
 						</Button>
 					</Link>
-					{/* <Button variant="ghost" onClick={() => setDarkMode(!darkMode)}>
+					<Button variant="ghost" onClick={() => setDarkMode(!darkMode)}>
 						{darkMode ? <Sun size={20} /> : <Moon size={20} />}
-					</Button> */}
+					</Button>
 				</div>
 			</div>
-			<div className="screen">
-				<motion.div
-					className="left-user"
-					initial={{ opacity: 0, x: -20 }}
-					animate={{ opacity: 1, x: 0 }}
-					transition={{ duration: 0.5 }}
-				>
-					<div className="user-info">
-						<h2>
-							Hi, <strong>{user.username}</strong>! How are you today?
-						</h2>
-						<p>
-							<strong>Email:</strong> {user.email}
-						</p>
-					</div>
+			<div className="calendar-container">
+				<div className="user-info mb-4">
+					<h2>
+						<strong>{user.username}'s</strong> Journal History
+					</h2>
+				</div>
 
-					<div className="affirmations-calendar">
-						<JournalCalendar />
-					</div>
+				<div className="calendar-view">
+					<JournalCalendar />
+				</div>
 
-					<div className="logout">
-						<Button onClick={handleLogout} variant="destructive">
-							Logout
-						</Button>
-					</div>
-				</motion.div>
-				<motion.div
-					className="right-app"
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5 }}
-				>
-					<MoodProvider>
-						<div className="mood">
-							<h2>How are you feeling today?</h2>
-							<Moods />
-						</div>
-						<div className="journals">
-							<JournalEntry />
-						</div>
-					</MoodProvider>
-				</motion.div>
+				<div className="logout mt-8">
+					<Button onClick={handleLogout} variant="destructive">
+						Logout
+					</Button>
+				</div>
 			</div>
 		</div>
 	);
 };
 
-export default Home;
+export default CalendarPage;
