@@ -114,7 +114,11 @@ mind-bloom/
    ```bash
    psql postgres < databases/create_databases.sql
    npm run migrate
+   source .env
    DATABASE_URL="postgresql://localhost:5432/capstone_starter_test?user=capstone_starter&password=capstone_starter" npm run migrate
+
+   cd databases
+   npx knex seed:run --knexfile knexfile.js
    ```
 
 5. Seed the database with initial affirmations
